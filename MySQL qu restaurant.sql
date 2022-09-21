@@ -1,12 +1,28 @@
 CREATE DATABASE qa_restaurant;
-
 USE qa_restaurant;
 
-CREATE TABLE customers(
-cust_ID INT UNIQUE AUTO_INCREMENT,
+CREATE TABLE customer(
+cust_id INT UNIQUE NOT NULL AUTO_INCREMENT,
 cust_name VARCHAR(100) NOT NULL,
-phone_number CHAR(10) NOT NULL,
-PRIMARY KEY(cust_id));
+cust_email VARCHAR(100) UNIQUE NOT NULL,
+cust_phone INT NOT NULL,
+PRIMARY KEY (cust_id));
+
+CREATE TABLE items(
+item_id INT UNIQUE NOT NULL AUTO_INCREMENT,
+item_name VARCHAR(50) NOT NULL,
+item_price DECIMAL(5,2) NOT NULL,
+PRIMARY KEY(item_id));
 
 SHOW TABLES;
 DESCRIBE customers;
+DESCRIBE items;
+
+ALTER TABLE items MODIFY item_name VARCHAR(25) NOT NULL;
+
+ALTER TABLE customer DROP COLUMN post_code;
+
+ALTER TABLE customer RENAME TO customers;
+
+ALTER TABLE customer ADD COLUMN post_code VARCHAR(8) NOT NULL;
+
